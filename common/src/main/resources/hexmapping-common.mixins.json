@@ -1,0 +1,14 @@
+{
+  "required": true,
+  "package": "io.github.techtastic.hexmapping.mixin",
+  "compatibilityLevel": "JAVA_17",
+  "minVersion": "0.8",
+  "client": [
+    "HexMappingMixin"
+  ],
+  "mixins": [
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

@@ -1,0 +1,20 @@
+# Changes here will be overwritten by Copier; NEVER EDIT MANUALLY
+# https://copier.readthedocs.io/en/stable/configuring/#the-copier-answersyml-file
+_commit: v0.0.9
+_src_path: gh:FallingColors/hexdummy
+author: TechTastic
+capitalize_platforms: false
+classname: HexMapping
+default_branch: main
+description: Hexcasting x Dynmap/Bluemap Addon
+display_name: HexMapping
+github_repo: hexmapping
+hexcasting_version: 0.11.2
+homepage_url: https://techtastic.github.io/hexmapping
+initial_mod_version: 0.0.1
+java_version: 17
+license: MIT
+mappings_name: Mojmap
+modid: hexmapping
+package: io.github.techtastic.hexmapping
+sources_url: https://github.com/TechTastic/hexmapping

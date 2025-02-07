@@ -1,0 +1,37 @@
+{
+  "schemaVersion": 1,
+  "id": "hexmapping",
+  "version": "${version}",
+  "name": "HexMapping",
+  "description": "Hexcasting x Dynmap/Bluemap Addon",
+  "authors": [
+    "TechTastic"
+  ],
+  "contact": {
+    "homepage": "https://techtastic.github.io/hexmapping",
+    "sources": "https://github.com/TechTastic/hexmapping"
+  },
+  "license": "MIT",
+  "icon": "icon.png",
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "io.github.techtastic.hexmapping.fabric.HexMappingFabric"
+    ],
+    "client": [
+      "io.github.techtastic.hexmapping.fabric.HexMappingClientFabric"
+    ]
+  },
+  "mixins": [
+    "hexmapping-common.mixins.json",
+    "hexmapping.mixins.json"
+  ],
+  "depends": {
+    "minecraft": ">=${minecraftVersion}",
+    "fabricloader": ">=${fabricLoaderVersion}",
+    "fabric-api": "*",
+    "fabric-language-kotlin": ">=${fabricKotlinVersion}",
+    "architectury": ">=${architecturyVersion}",
+    "hexcasting": ">=${hexcastingVersion}"
+  }
+}
