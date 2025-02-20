@@ -1,0 +1,74 @@
+To Do
+- [ ] SquareMap Integration
+  - Markers
+    - Polygon
+  - Marker Options
+    - Filled?
+    - Fill Color
+    - Fill Opacity
+    - Fill Rule
+    - Stroke?
+    - Stroke Color
+    - Stroke Opacity
+    - Stroke Weight
+    - Click Tooltip
+    - Hover Tooltip
+
+- [ ] P13xlmap Integration
+  - Markers
+    - Polygon
+  - Options
+    - Stroke
+    - Fill
+    - Tooltip
+    - Popup
+
+- [ ] Dynmap Integration
+  - Markers
+    - Area
+      - Technically has a 3D component like Extrude in Bluemap
+  - Options
+    - Label
+    - Area, Circle
+      - Fill Color
+      - Fill Opacity
+      - Line Opacity
+      - Line Color
+      - Line Weight
+      - Farewell Text
+      - Greeting Text
+    - Polyline
+      - Line Opacity
+      - Line Color
+      - Line Weight
+
+- [ ] Bluemap Integration
+  - Markers
+    - Html
+    - Extrude
+    - Shape (Polygon)
+  - Options
+    - CSS(?)
+
+- Shared Integration
+  - Markers
+    - Icon
+      - Icon (Squaremap, Pl3xmap)
+      - Marker (Dynmap)
+      - POI (Bluemap)
+    - Polyline (Line, Polyline)
+      - Polyline (Squaremap, Pl3xmap, Dynmap)
+      - Line (Bluemap)
+    - Rectangle
+      - Rectangle (Squaremap, Pl3xmap)
+      - Area (Dynmap)
+      - Shape (Bluemap)
+    - Circle
+      - Circle (Squaremap, Pl3xmap, Dynmap)
+      - Shape (Bluemap)
+    - Ellipse
+      - Ellipse (Squaremap, Pl3xmap)
+      - Circle (Dynmap)
+      - Shape (Bluemap)
+  - Other
+    - Map Name

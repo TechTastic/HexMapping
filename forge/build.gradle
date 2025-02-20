@@ -30,33 +30,44 @@ configurations {
     developmentForge.extendsFrom common
 }
 
+repositories {
+    flatDir {
+        dir 'libs'
+    }
+}
+
 dependencies {
+    compileOnly(annotationProcessor("io.github.llamalad7:mixinextras-common:0.4.1"))
+    implementation(include("io.github.llamalad7:mixinextras-forge:0.4.1"))
     modCompileOnly(group: 'com.google.code.findbugs', name: 'jsr305', version: '3.0.2') // for @Nonnull
 
     forge "net.minecraftforge:forge:${project.forgeVersion}"
     modApi "dev.architectury:architectury-forge:${project.architecturyVersion}"
 
-    modImplementation("at.petra-k.hexcasting:hexcasting-forge-${project.minecraftVersion}:${project.hexcastingVersion}") {
-        transitive = false
-    }
+    modImplementation("at.petra-k.hexcasting:hexcasting-forge-${project.minecraftVersion}:${project.hexcastingVersion}") { transitive = false }
 
     // // Hex Casting Dependencies
     modCompileOnly "at.petra-k.paucal:paucal-forge-$minecraftVersion:$paucalVersion"
-    runtimeOnly "at.petra-k.paucal:paucal-forge-$minecraftVersion:$paucalVersion"
+    modRuntimeOnly "at.petra-k.paucal:paucal-forge-$minecraftVersion:$paucalVersion"
     modCompileOnly "vazkii.patchouli:Patchouli:$minecraftVersion-$patchouliVersion-FORGE-SNAPSHOT"
-    runtimeOnly "vazkii.patchouli:Patchouli:$minecraftVersion-$patchouliVersion-FORGE-SNAPSHOT"
+    modRuntimeOnly "vazkii.patchouli:Patchouli:$minecraftVersion-$patchouliVersion-FORGE-SNAPSHOT"
 
     runtimeOnly "thedarkcolour:kotlinforforge:$project.forgeKotlinVersion"
 
     modRuntimeOnly "top.theillusivec4.caelus:caelus-forge:$caelusVersion"
 
-    modImplementation "com.samsthenerd.inline:inline-forge:$minecraftVersion-$inlineVersion"
+    modImplementation("com.samsthenerd.inline:inline-forge:$minecraftVersion-$inlineVersion") { transitive = false }
 
     // needed for inline to run
     runtimeOnly "me.shedaniel.cloth:cloth-config-forge:$clothConfigVersion"
 
     common(project(path: ":common", configuration: "namedElements")) { transitive false }
     shadowCommon(project(path: ":common", configuration: "transformProductionForge")) { transitive = false }
+
+    // MoreIotas
+    modImplementation "${modID}:moreiotas-forge:1.20.1-0.1.0-5"
+
+    modCompileOnly "maven.modrinth:dynmap:RtI5TFAi"
 }
 
 processResources {

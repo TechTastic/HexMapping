@@ -1,7 +1,7 @@
 plugins {
     id 'dev.architectury.loom' version '1.7-SNAPSHOT' apply false
     id 'architectury-plugin' version '3.4-SNAPSHOT'
-    id "org.jetbrains.kotlin.jvm" version "1.8.0"
+    id "org.jetbrains.kotlin.jvm" version "1.9.22"
 
     // for template.env api keys
     id "co.uzzu.dotenv.gradle" version "2.0.0"
@@ -31,6 +31,11 @@ subprojects {
         annotationProcessor "org.ow2.asm:asm-commons:${project.asmVersion}"
         annotationProcessor "org.ow2.asm:asm-tree:${project.asmVersion}"
         annotationProcessor "org.ow2.asm:asm-util:${project.asmVersion}"
+
+        compileOnly "de.bluecolored.bluemap:BlueMapAPI:${rootProject.bluemap_version}"
+        compileOnly "us.dynmap:DynmapCoreAPI:${rootProject.dynmap_version}"
+        compileOnly "maven.modrinth:pl3xmap:${rootProject.pl3xmap_version}"
+        compileOnly "xyz.jpenilla:squaremap-api:${rootProject.squaremap_version}"
     }
 
     sourceSets.main.kotlin.srcDirs += 'src/main/java'
@@ -92,6 +97,8 @@ allprojects {
         }
 
         // Add any other repositories with your cross-platform dependency mods
+        maven { url = 'https://repo.bluecolored.de/releases' }
+        maven { url = "https://repo.mikeprimm.com/" }
     }
 
     tasks.withType(JavaCompile) {

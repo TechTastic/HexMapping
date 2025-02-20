@@ -1,5 +1,5 @@
 author: TechTastic
-book_id: "hexmapping:hexmappingbook"
+book_id: "hexmapping:thehexbook"
 default_branch: main
 github_repo: hexmapping
 gradle_mod_version_key: modVersion

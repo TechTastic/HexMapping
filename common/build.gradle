@@ -1,5 +1,5 @@
 plugins {
-    id 'org.jetbrains.kotlin.jvm' version '1.8.0'
+    id 'org.jetbrains.kotlin.jvm' version '1.9.22'
 }
 archivesBaseName = getArtifactId("common")
 
@@ -9,6 +9,12 @@ architectury {
 
 loom {
     accessWidenerPath = file("src/main/resources/hexmapping.accesswidener")
+}
+
+repositories {
+    flatDir {
+        dir 'libs'
+    }
 }
 
 dependencies {
@@ -23,11 +29,15 @@ dependencies {
     modCompileOnly("at.petra-k.hexcasting:hexcasting-common-${project.minecraftVersion}:${project.hexcastingVersion}") {
         transitive = false
     }
-
     compileOnly "at.petra-k.paucal:paucal-common-$minecraftVersion:$paucalVersion"
     compileOnly "vazkii.patchouli:Patchouli-xplat:$minecraftVersion-$patchouliVersion-SNAPSHOT"
-
     compileOnly "com.samsthenerd.inline:inline-forge:$minecraftVersion-$inlineVersion"
+
+    modCompileOnly "${modID}:moreiotas-common:1.20.1-0.1.0-5"
+
+    modCompileOnly "maven.modrinth:pl3xmap:${rootProject.pl3xmap_version}"
+    modCompileOnly "us.dynmap:DynmapCoreAPI:${rootProject.dynmap_version}"
+    modCompileOnly "maven.modrinth:dynmap:IIQSYMHC"
 }
 
 publishing {

@@ -23,6 +23,10 @@ configurations {
 }
 
 repositories {
+    maven {
+        name "KosmX's maven"
+        url 'https://maven.kosmx.dev/'
+    }
     flatDir {
         dir 'libs'
     }
@@ -66,6 +70,13 @@ dependencies {
 
     common(project(path: ":common", configuration: "namedElements")) { transitive false }
     shadowCommon(project(path: ":common", configuration: "transformProductionFabric")) { transitive false }
+
+    modImplementation "${modID}:moreiotas-fabric:1.20.1-0.1.0-5"
+
+    modImplementation "${modID}:hexical:1.5.0"
+    modLocalRuntime "dev.kosmx.player-anim:player-animation-lib-fabric:1.0.2-rc1+1.20"
+
+    modCompileOnly "maven.modrinth:dynmap:IIQSYMHC"
 }
 
 processResources {
