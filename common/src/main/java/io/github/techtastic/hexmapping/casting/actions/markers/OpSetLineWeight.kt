@@ -7,7 +7,7 @@ import at.petrak.hexcasting.api.casting.iota.Iota
 import at.petrak.hexcasting.api.casting.mishaps.MishapInvalidIota
 import io.github.techtastic.hexmapping.api.casting.iota.MarkerIota
 import io.github.techtastic.hexmapping.integration.IntegrationHelper.getMarker
-import io.github.techtastic.hexmapping.markers.IOptions
+import io.github.techtastic.hexmapping.markers.*
 
 class OpSetLineWeight : ConstMediaAction {
     override val argc: Int
@@ -17,13 +17,13 @@ class OpSetLineWeight : ConstMediaAction {
         val marker = args.getMarker(0, argc)
         val weight = args.getPositiveDouble(1, argc)
 
-        if (marker !is IOptions)
-            throw MishapInvalidIota.ofType(MarkerIota(MarkerIota.getType(marker), marker), 0, "marker.options")
-
-        if (marker.hasLineWeight())
-            throw MishapInvalidIota.ofType(MarkerIota(MarkerIota.getType(marker), marker), 0, "marker.options.weight")
-
-        marker.setLineWeight(weight)
+        when (marker) {
+            is CircleMarker -> marker.setLineWeight(weight)
+            is RectangleMarker -> marker.setLineWeight(weight)
+            is PolygonMarker -> marker.setLineWeight(weight)
+            is PolylineMarker -> marker.setLineWeight(weight)
+            else -> throw MishapInvalidIota.ofType(MarkerIota(MarkerIota.getType(marker), marker), 0, "marker.options")
+        }
 
         return listOf(MarkerIota(MarkerIota.getType(marker), marker))
     }

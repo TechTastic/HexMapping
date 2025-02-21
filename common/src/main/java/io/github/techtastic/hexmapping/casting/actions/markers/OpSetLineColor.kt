@@ -7,7 +7,7 @@ import at.petrak.hexcasting.api.casting.mishaps.MishapInvalidIota
 import io.github.techtastic.hexmapping.api.casting.iota.MarkerIota
 import io.github.techtastic.hexmapping.integration.IntegrationHelper.getColor
 import io.github.techtastic.hexmapping.integration.IntegrationHelper.getMarker
-import io.github.techtastic.hexmapping.markers.IOptions
+import io.github.techtastic.hexmapping.markers.*
 
 class OpSetLineColor : ConstMediaAction {
     override val argc: Int
@@ -17,13 +17,13 @@ class OpSetLineColor : ConstMediaAction {
         val marker = args.getMarker(0, argc)
         val color = args.getColor(1, argc)
 
-        if (marker !is IOptions)
-            throw MishapInvalidIota.ofType(MarkerIota(MarkerIota.getType(marker), marker), 0, "marker.options")
-
-        if (marker.hasLineColor())
-            throw MishapInvalidIota.ofType(MarkerIota(MarkerIota.getType(marker), marker), 0, "marker.options.line")
-
-        marker.setLineColor(color)
+        when (marker) {
+            is CircleMarker -> marker.setLineColor(color)
+            is RectangleMarker -> marker.setLineColor(color)
+            is PolygonMarker -> marker.setLineColor(color)
+            is PolylineMarker -> marker.setLineColor(color)
+            else -> throw MishapInvalidIota.ofType(MarkerIota(MarkerIota.getType(marker), marker), 0, "marker.options")
+        }
 
         return listOf(MarkerIota(MarkerIota.getType(marker), marker))
     }

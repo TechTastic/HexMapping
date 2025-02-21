@@ -109,7 +109,7 @@ object IntegrationHelper {
 
     fun List<Iota>.getColor(idx: Int, argc: Int): Int {
         try {
-            return this.getPositiveIntUnderInclusive(idx, 0xFFFFFFFF.toInt(), argc)
+            return this.getPositiveIntUnderInclusive(idx, 0xFFFFFF, argc)
         } catch (m: MishapInvalidIota) {
             if (Platform.isModLoaded("hexical"))
                 return this.getColor(idx, argc)
