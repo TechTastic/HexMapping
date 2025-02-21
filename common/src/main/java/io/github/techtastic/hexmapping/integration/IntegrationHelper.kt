@@ -14,12 +14,6 @@ import io.github.techtastic.hexmapping.markers.BaseMarker
 import io.github.techtastic.hexmapping.platform.HexMappingHexicalAbstractions.getMesh
 import net.minecraft.world.phys.Vec3
 import org.apache.commons.lang3.StringEscapeUtils
-import java.awt.RenderingHints
-import java.awt.image.BufferedImage
-import java.io.*
-import java.net.URL
-import java.util.*
-import javax.imageio.ImageIO
 
 object IntegrationHelper {
     const val ICON_WIDTH: Int = 24
@@ -27,66 +21,6 @@ object IntegrationHelper {
 
     fun sanitizeHtml(html: String?): String {
         return StringEscapeUtils.escapeHtml4(html)
-    }
-
-    fun downloadAndResizeIconBufferedImage(url: URL?): BufferedImage? {
-        try {
-            val icon = ImageIO.read(url) ?: return null
-            val resizedIcon = BufferedImage(ICON_WIDTH, ICON_HEIGHT, BufferedImage.TYPE_INT_ARGB)
-            val g2d = resizedIcon.createGraphics()
-            g2d.addRenderingHints(RenderingHints(RenderingHints.KEY_RENDERING, RenderingHints.VALUE_RENDER_QUALITY))
-            g2d.drawImage(icon, 0, 0, ICON_WIDTH, ICON_HEIGHT, null)
-            return resizedIcon
-        } catch (e: Exception) {
-            //ComputerCartographer.logException(e);
-        }
-        return null
-    }
-
-    fun downloadAndResizeIcon(url: URL?): InputStream? {
-        val resizedIcon = downloadAndResizeIconBufferedImage(url)
-        if (resizedIcon != null) {
-            try {
-                val outStream = ByteArrayOutputStream()
-                ImageIO.write(resizedIcon, "png", outStream)
-                return ByteArrayInputStream(outStream.toByteArray())
-            } catch (e: IOException) {
-                //ComputerCartographer.logException(e);
-            }
-        }
-        return null
-    }
-
-    fun downloadAndResizeIcon(url: URL?, output: OutputStream): Boolean {
-        try {
-            val resizedIcon = downloadAndResizeIconBufferedImage(url)
-            if (resizedIcon != null) {
-                ImageIO.write(resizedIcon, "png", output)
-                output.flush()
-                output.close()
-                return true
-            }
-        } catch (e: Exception) {
-            //ComputerCartographer.logException(e);
-        }
-        return false
-    }
-
-    fun getDirectoriesWithRegionDirectory(dir: File): ArrayList<String> {
-        val matches = ArrayList<String>()
-        return getDirectoriesWithRegionDirectory(dir, matches)
-    }
-
-    fun getDirectoriesWithRegionDirectory(dir: File, matches: ArrayList<String>): ArrayList<String> {
-        val ls = dir.listFiles()
-        for (file in Objects.requireNonNull(ls)) {
-            if (file.isDirectory && file.name == "region") {
-                matches.add(file.parentFile.name)
-            } else if (file.isDirectory) {
-                getDirectoriesWithRegionDirectory(file, matches)
-            }
-        }
-        return matches
     }
 
     fun List<Iota>.getMarker(idx: Int, argc: Int): BaseMarker {

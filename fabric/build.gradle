@@ -140,42 +140,71 @@ publishMods {
     version = project.version + "-fabric"
     displayName = "HexMapping $project.version [Fabric]"
 
-    // Uncomment your desired platform(s)
-//    curseforge {
-//        accessToken = project.curseforgeApiToken
-//        projectId = project.curseforgeId
-//        minecraftVersions.add(minecraftVersion)
-//
-//        requires{
-//            slug = "fabric-api"
-//        }
-//        requires {
-//            slug = "architectury-api"
-//        }
-//        requires {
-//            slug = "fabric-language-kotlin"
-//        }
-//        requires {
-//            slug = "hexcasting"
-//        }
-//    }
-//
-//    modrinth {
-//        accessToken = project.modrinthApiToken
-//        projectId = project.modrinthId
-//        minecraftVersions.add("1.19.2")
-//
-//        requires{
-//            slug = "fabric-api"
-//        }
-//        requires {
-//            slug = "architectury-api"
-//        }
-//        requires {
-//            slug = "fabric-language-kotlin"
-//        }
-//        requires {
-//            slug = "hex-casting"
-//        }
-//    }
+    curseforge {
+        accessToken = project.curseforgeApiToken
+        projectId = project.curseforgeId
+        minecraftVersions.add(minecraftVersion)
+
+        requires{
+            slug = "fabric-api"
+        }
+        requires {
+            slug = "architectury-api"
+        }
+        requires {
+            slug = "fabric-language-kotlin"
+        }
+        requires {
+            slug = "hexcasting"
+        }
+        requires {
+            slug = "moreiotas"
+        }
+
+        optional {
+            slug = "bluemap"
+        }
+        optional {
+            slug = "dynmap"
+        }
+    }
+
+    modrinth {
+        accessToken = project.modrinthApiToken
+        projectId = project.modrinthId
+        minecraftVersions.add(minecraftVersion)
+
+        requires{
+            slug = "fabric-api"
+        }
+        requires {
+            slug = "architectury-api"
+        }
+        requires {
+            slug = "fabric-language-kotlin"
+        }
+        requires {
+            slug = "hex-casting"
+        }
+        requires {
+            slug = "moreiotas"
+        }
+
+        optional {
+            slug = "hexical"
+        }
+
+        optional {
+            slug = "bluemap"
+        }
+        optional {
+            slug = "dynmap"
+        }
+        optional {
+            slug = "pl3xmap"
+        }
+        optional {
+            slug = "squaremap"
+        }
+    }
 }
