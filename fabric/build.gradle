@@ -1,6 +1,6 @@
 plugins {
     id "com.github.johnrengelman.shadow" version "7.1.2"
-    id "me.modmuss50.mod-publish-plugin" version "0.3.0"
+    id "me.modmuss50.mod-publish-plugin" version "0.8.4"
 }
 
 archivesBaseName = getArtifactId("fabric")
@@ -165,7 +165,7 @@ publishMods {
             slug = "bluemap"
         }
         optional {
-            slug = "dynmap"
+            slug = "dynmapforge"
         }
     }
 
