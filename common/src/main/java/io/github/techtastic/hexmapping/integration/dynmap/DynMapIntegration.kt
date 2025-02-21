@@ -1,17 +1,12 @@
 package io.github.techtastic.hexmapping.integration.dynmap
 
-import at.petrak.hexcasting.api.casting.ActionRegistryEntry
-import at.petrak.hexcasting.api.casting.math.HexDir
-import at.petrak.hexcasting.api.casting.math.HexPattern
 import io.github.techtastic.hexmapping.platform.HexMappingDynmapAbstractions
 import io.github.techtastic.hexmapping.api.casting.iota.MapIota
 import io.github.techtastic.hexmapping.api.casting.mishaps.MishapAPIUninitialized
 import io.github.techtastic.hexmapping.api.casting.mishaps.MishapUnrecognizedMarker
-import io.github.techtastic.hexmapping.casting.actions.markers.OpGetMaps
 import io.github.techtastic.hexmapping.integration.IMapIntegration
 import io.github.techtastic.hexmapping.integration.IntegrationHelper
 import io.github.techtastic.hexmapping.markers.*
-import io.github.techtastic.hexmapping.registry.HexMappingPatternRegistry
 import net.minecraft.resources.ResourceLocation
 import net.minecraft.server.level.ServerLevel
 import org.dynmap.DynmapCommonAPI
@@ -163,12 +158,5 @@ object DynMapIntegration: DynmapCommonAPIListener(), IMapIntegration {
         set.findPolyLineMarker(id)?.deleteMarker()
         set.findAreaMarker(id)?.deleteMarker()
         set.findCircleMarker(id)?.deleteMarker()
-    }
-
-    override fun registerPatterns() {
-        HexMappingPatternRegistry.register("get_maps/dynmap", ActionRegistryEntry(
-            HexPattern.fromAngles("aawwdee", HexDir.SOUTH_WEST),
-            OpGetMaps(this::getMapFromLevel)
-        ))
     }
 }

@@ -1,16 +1,11 @@
 package io.github.techtastic.hexmapping.integration.pl3xmap
 
-import at.petrak.hexcasting.api.casting.ActionRegistryEntry
-import at.petrak.hexcasting.api.casting.math.HexDir
-import at.petrak.hexcasting.api.casting.math.HexPattern
 import io.github.techtastic.hexmapping.api.casting.iota.MapIota
 import io.github.techtastic.hexmapping.api.casting.mishaps.MishapBadMap
 import io.github.techtastic.hexmapping.api.casting.mishaps.MishapUnrecognizedMarker
-import io.github.techtastic.hexmapping.casting.actions.markers.OpGetMaps
 import io.github.techtastic.hexmapping.integration.IMapIntegration
 import io.github.techtastic.hexmapping.integration.IntegrationHelper
 import io.github.techtastic.hexmapping.markers.*
-import io.github.techtastic.hexmapping.registry.HexMappingPatternRegistry
 import net.minecraft.server.level.ServerLevel
 import net.pl3x.map.core.Pl3xMap
 import net.pl3x.map.core.markers.Point
@@ -76,12 +71,5 @@ object Pl3xMapIntegration: IMapIntegration {
 
     override fun removeMarker(world: String, setName: String, id: String) {
         getLayerInWorld(world, setName).markers.removeIf { marker -> marker.key == id }
-    }
-
-    override fun registerPatterns() {
-        HexMappingPatternRegistry.register("get_maps/pl3xmap", ActionRegistryEntry(
-            HexPattern.fromAngles("aawwdd", HexDir.SOUTH_WEST),
-            OpGetMaps(this::getMapFromLevel)
-        ))
     }
 }

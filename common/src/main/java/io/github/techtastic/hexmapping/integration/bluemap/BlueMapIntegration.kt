@@ -1,9 +1,5 @@
 package io.github.techtastic.hexmapping.integration.bluemap
 
-import at.petrak.hexcasting.api.casting.ActionRegistryEntry
-import at.petrak.hexcasting.api.casting.math.HexDir
-import at.petrak.hexcasting.api.casting.math.HexPattern
-import at.petrak.hexcasting.api.casting.mishaps.MishapInternalException
 import com.flowpowered.math.vector.Vector2d
 import com.flowpowered.math.vector.Vector3d
 import de.bluecolored.bluemap.api.BlueMapAPI
@@ -20,11 +16,9 @@ import io.github.techtastic.hexmapping.api.casting.iota.MapIota
 import io.github.techtastic.hexmapping.api.casting.mishaps.MishapAPIUninitialized
 import io.github.techtastic.hexmapping.api.casting.mishaps.MishapBadMap
 import io.github.techtastic.hexmapping.api.casting.mishaps.MishapUnrecognizedMarker
-import io.github.techtastic.hexmapping.casting.actions.markers.OpGetMaps
 import io.github.techtastic.hexmapping.integration.IMapIntegration
 import io.github.techtastic.hexmapping.integration.IntegrationHelper
 import io.github.techtastic.hexmapping.markers.*
-import io.github.techtastic.hexmapping.registry.HexMappingPatternRegistry
 import net.minecraft.server.level.ServerLevel
 import kotlin.jvm.optionals.getOrNull
 import kotlin.math.max
@@ -140,12 +134,5 @@ object BlueMapIntegration: IMapIntegration {
 
     override fun removeMarker(world: String, setName: String, id: String) {
         getMarkerSet(world, setName).remove(id)
-    }
-
-    override fun registerPatterns() {
-        HexMappingPatternRegistry.register("get_maps/bluemap", ActionRegistryEntry(
-            HexPattern.fromAngles("aawwddad", HexDir.SOUTH_WEST),
-            OpGetMaps(this::getMapFromLevel)
-        ))
     }
 }

@@ -1,16 +1,11 @@
 package io.github.techtastic.hexmapping.integration.squaremap
 
-import at.petrak.hexcasting.api.casting.ActionRegistryEntry
-import at.petrak.hexcasting.api.casting.math.HexDir
-import at.petrak.hexcasting.api.casting.math.HexPattern
 import io.github.techtastic.hexmapping.api.casting.iota.MapIota
 import io.github.techtastic.hexmapping.api.casting.mishaps.MishapBadMap
 import io.github.techtastic.hexmapping.api.casting.mishaps.MishapUnrecognizedMarker
-import io.github.techtastic.hexmapping.casting.actions.markers.OpGetMaps
 import io.github.techtastic.hexmapping.integration.IMapIntegration
 import io.github.techtastic.hexmapping.integration.IntegrationHelper
 import io.github.techtastic.hexmapping.markers.*
-import io.github.techtastic.hexmapping.registry.HexMappingPatternRegistry
 import net.minecraft.server.level.ServerLevel
 import xyz.jpenilla.squaremap.api.*
 import xyz.jpenilla.squaremap.api.marker.Marker
@@ -93,12 +88,5 @@ object SquareMapIntegration: IMapIntegration {
 
     override fun removeMarker(world: String, setName: String, id: String) {
         getOrCreateLayer(world, setName).removeMarker(Key.of(id))
-    }
-
-    override fun registerPatterns() {
-        HexMappingPatternRegistry.register("get_maps/squaremap", ActionRegistryEntry(
-            HexPattern.fromAngles("aaeqwawqw", HexDir.SOUTH_WEST),
-            OpGetMaps(this::getMapFromLevel)
-        ))
     }
 }

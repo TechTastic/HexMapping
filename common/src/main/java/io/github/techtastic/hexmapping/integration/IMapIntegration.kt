@@ -17,6 +17,4 @@ interface IMapIntegration {
     fun hasMarker(world: String, setName: String, id: String): Boolean
 
     fun removeMarker(world: String, setName: String, id: String)
-
-    fun registerPatterns()
 }
