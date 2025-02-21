@@ -135,25 +135,8 @@ publishMods {
         projectId = project.curseforgeId
         minecraftVersions.add(minecraftVersion)
 
-        requires {
-            slug = "architectury-api"
-        }
-        requires {
-            slug = "kotlin-for-forge"
-        }
-        requires {
-            slug = "hexcasting"
-        }
-        requires {
-            slug = "moreiotas"
-        }
-
-        optional {
-            slug = "bluemap"
-        }
-        optional {
-            slug = "dynmapforge"
-        }
+        requires("architectury-api", "kotlin-for-forge", "hexcasting", "moreiotas")
+        optional("bluemap", "dynmapforge")
     }
 
     modrinth {
@@ -161,34 +144,16 @@ publishMods {
         projectId = project.modrinthId
         minecraftVersions.add(minecraftVersion)
 
-        requires {
-            slug = "architectury-api"
-        }
-        requires {
-            slug = "kotlin-for-forge"
-        }
-        requires {
-            slug = "hex-casting"
-        }
-        requires {
-            slug = "moreiotas"
-        }
+        requires("architectury-api")
+        requires("kotlin-for-forge")
+        requires("hex-casting")
+        requires("moreiotas")
 
-        optional {
-            slug = "hexical"
-        }
+        optional("hexical")
 
-        optional {
-            slug = "bluemap"
-        }
-        optional {
-            slug = "dynmap"
-        }
-        optional {
-            slug = "pl3xmap"
-        }
-        optional {
-            slug = "squaremap"
-        }
+        optional("bluemap")
+        optional("dynmap")
+        optional("pl3xmap")
+        optional("squaremap")
     }
 }
