@@ -29,7 +29,7 @@
   "hexmapping.page.marker_spells.remove_marker": "移除$(thing)地图$()中使用所给$(thing)标识$()的标记。",
 
   "hexmapping.entry.markers": "自然的义眼",
-  "hexcasting.page.markers.info": "$(italic)我发现了一个恐怖的真相。有东西在看着我们……$()$(br2)我开始觉得这只是反探知咒术的误差。但在进一步测试之后，这些似乎都表明：有东西在窥探我们的世界，还借自然来掩人耳目。$(br2)是可忍……",
+  "hexcasting.page.markers.info": "$(italic)我发现了一个恐怖的真相。有东西在看着我们……$()$(br2)我开始觉得这只是反探知咒术的误差。但在进一步测试之后，这些似乎都表明：有东西在窥探我们的世界，还借自然来掩人耳目。$(br2)该不会……",
   "hexcasting.page.markers.info.extra": "我已着手测试它们感知力的限度。$(br2)借助$(thing)地图$()，我成功将各种$(thing)标记$()刻入了自然的眼睛，以此扭曲它们的知觉。$(br2)$(italic)我担心我的举动可能引来了更多观测者……希望我猜错了……$(br2)$(br)    $(bold)它们看见我了$()$(br2)      $(italic)它们看见你了，$(#ff0000)$(playername)",
   "hexcasting.page.markers.missing": "啊，呃……你好像没有安装任何兼容的地图模组……$(br2)这里是已有兼容模组的清单：$(li)$(l:https://modrinth.com/plugin/bluemap)Bluemap$(/l)$(li)$(l:https://modrinth.com/plugin/dynmap)Dynmap$(/l)$(li)$(l:https://modrinth.com/plugin/pl3xmap)Pl3xmap$(/l)$(li)$(l:https://modrinth.com/plugin/squaremap)Squaremap$(/l)",
   "hexcasting.action.hexmapping:get_maps/bluemap": "Bluemap 之精思",
