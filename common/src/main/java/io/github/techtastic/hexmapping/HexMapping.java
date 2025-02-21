@@ -5,6 +5,7 @@ import com.samsthenerd.inline.api.data.SpriteInlineData;
 import com.samsthenerd.inline.api.matching.*;
 import com.samsthenerd.inline.utils.TextureSprite;
 import dev.architectury.platform.Platform;
+import io.github.techtastic.hexmapping.registry.HexMappingIntegrationRegistry;
 import io.github.techtastic.hexmapping.registry.HexMappingIotaTypeRegistry;
 import io.github.techtastic.hexmapping.registry.HexMappingPatternRegistry;
 import net.minecraft.resources.ResourceLocation;
@@ -27,11 +28,8 @@ public class HexMapping {
         HexMappingIotaTypeRegistry.init();
         HexMappingPatternRegistry.init();
 
-        PatchouliAPI.get().setConfigFlag("has_any_map",
-                Platform.isModLoaded("bluemap") ||
-                        Platform.isModLoaded("dynmap") ||
-                        Platform.isModLoaded("pl3xmap") ||
-                        Platform.isModLoaded("squaremap"));
+        PatchouliAPI.get().setConfigFlag("has_map_mod",
+                HexMappingIntegrationRegistry.INSTANCE.areAnyIntegrationsEnabled());
     }
 
     /**

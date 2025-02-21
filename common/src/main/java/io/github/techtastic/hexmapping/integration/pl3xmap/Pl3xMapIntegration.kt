@@ -11,6 +11,7 @@ import io.github.techtastic.hexmapping.integration.IMapIntegration
 import io.github.techtastic.hexmapping.integration.IntegrationHelper
 import io.github.techtastic.hexmapping.markers.*
 import io.github.techtastic.hexmapping.registry.HexMappingPatternRegistry
+import net.minecraft.server.level.ServerLevel
 import net.pl3x.map.core.Pl3xMap
 import net.pl3x.map.core.markers.Point
 import net.pl3x.map.core.markers.layer.SimpleLayer
@@ -23,15 +24,17 @@ object Pl3xMapIntegration: IMapIntegration {
 
     private fun getWorld(world: String) =
         getAPI().worldRegistry.get(world)
-            ?: throw MishapBadMap("pl3xmap", world)
+            ?: throw MishapBadMap(getModID(), world)
 
     private fun getLayerInWorld(world: String, layerName: String) =
         getWorld(world).layerRegistry.get(layerName)
             ?: getWorld(world).layerRegistry.register(layerName, SimpleLayer(layerName) { layerName })
 
-    override fun getMaps(): List<MapIota> {
-        return getAPI().worldRegistry.map { world -> MapIota(MapIota.MapDetails("pl3xmap", world.key)) }
-    }
+    override fun getModID() = "pl3xmap"
+
+    override fun getMapFromLevel(level: ServerLevel) = getAPI().worldRegistry.filter { world ->
+        world.getLevel<ServerLevel>() == level }.map { world ->
+        MapIota(MapIota.MapDetails(getKeyForIntegration().toString(), world.key)) }
 
     override fun setMarker(world: String, setName: String, marker: BaseMarker) {
         val layer = getLayerInWorld(world, setName)
@@ -64,7 +67,7 @@ object Pl3xMapIntegration: IMapIntegration {
         }
 
         pl3xmapMarker?.setPane(IntegrationHelper.sanitizeHtml(marker.label))?.let(layer.markers::add)
-            ?: MishapUnrecognizedMarker("pl3xmap")
+            ?: MishapUnrecognizedMarker(getModID())
     }
 
     override fun hasMarker(world: String, setName: String, id: String): Boolean {
@@ -78,7 +81,7 @@ object Pl3xMapIntegration: IMapIntegration {
     override fun registerPatterns() {
         HexMappingPatternRegistry.register("get_maps/pl3xmap", ActionRegistryEntry(
             HexPattern.fromAngles("aawwdd", HexDir.SOUTH_WEST),
-            OpGetMaps(this::getMaps)
+            OpGetMaps(this::getMapFromLevel)
         ))
     }
 }

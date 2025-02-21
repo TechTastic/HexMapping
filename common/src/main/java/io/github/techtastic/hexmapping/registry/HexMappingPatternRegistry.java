@@ -43,14 +43,7 @@ public class HexMappingPatternRegistry {
             new ActionRegistryEntry(HexPattern.fromAngles("wddweddwwddwedd", HexDir.NORTH_EAST), new OpRemoveMarker()));
 
     public static void init() {
-        if (Platform.isModLoaded("bluemap"))
-            BlueMapIntegration.INSTANCE.registerPatterns();
-        if (Platform.isModLoaded("dynmap"))
-            DynMapIntegration.INSTANCE.registerPatterns();
-        if (Platform.isModLoaded("pl3xmap"))
-            Pl3xMapIntegration.INSTANCE.registerPatterns();
-        if (Platform.isModLoaded("squaremap"))
-            SquareMapIntegration.INSTANCE.registerPatterns();
+        HexMappingIntegrationRegistry.INSTANCE.registerPatterns();
     }
 
     public static ActionRegistryEntry register(String name, ActionRegistryEntry entry) {

@@ -11,6 +11,7 @@ import io.github.techtastic.hexmapping.integration.IMapIntegration
 import io.github.techtastic.hexmapping.integration.IntegrationHelper
 import io.github.techtastic.hexmapping.markers.*
 import io.github.techtastic.hexmapping.registry.HexMappingPatternRegistry
+import net.minecraft.server.level.ServerLevel
 import xyz.jpenilla.squaremap.api.*
 import xyz.jpenilla.squaremap.api.marker.Marker
 import xyz.jpenilla.squaremap.api.marker.MarkerOptions
@@ -21,7 +22,7 @@ object SquareMapIntegration: IMapIntegration {
 
     private fun getWorld(world: String) =
         getAPI().getWorldIfEnabled(WorldIdentifier.parse(world))
-            .orElseThrow { MishapBadMap("squaremap", world) }
+            .orElseThrow { MishapBadMap(getModID(), world) }
 
     private fun getOrCreateLayer(world: String, layerName: String): SimpleLayerProvider {
         val reg = getWorld(world).layerRegistry()
@@ -41,9 +42,10 @@ object SquareMapIntegration: IMapIntegration {
         return layer
     }
 
-    override fun getMaps(): List<MapIota> {
-        return getAPI().mapWorlds().map { world -> MapIota(MapIota.MapDetails("squaremap", world.identifier().asString()))}
-    }
+    override fun getModID() = "squaremap"
+
+    override fun getMapFromLevel(level: ServerLevel) =
+        listOf(MapIota(MapIota.MapDetails(getKeyForIntegration().toString(), level.dimension().location().toString())))
 
     override fun setMarker(world: String, setName: String, marker: BaseMarker) {
         val layer = getOrCreateLayer(world, setName)
@@ -82,7 +84,7 @@ object SquareMapIntegration: IMapIntegration {
                 .clickTooltip(IntegrationHelper.sanitizeHtml(marker.label))
                 .build()
             ))
-        } ?: throw MishapUnrecognizedMarker("squaremap")
+        } ?: throw MishapUnrecognizedMarker(getModID())
     }
 
     override fun hasMarker(world: String, setName: String, id: String): Boolean {
@@ -96,7 +98,7 @@ object SquareMapIntegration: IMapIntegration {
     override fun registerPatterns() {
         HexMappingPatternRegistry.register("get_maps/squaremap", ActionRegistryEntry(
             HexPattern.fromAngles("aaeqwawqw", HexDir.SOUTH_WEST),
-            OpGetMaps(this::getMaps)
+            OpGetMaps(this::getMapFromLevel)
         ))
     }
 }

@@ -6,12 +6,14 @@ import at.petrak.hexcasting.api.casting.math.HexPattern
 import io.github.techtastic.hexmapping.platform.HexMappingDynmapAbstractions
 import io.github.techtastic.hexmapping.api.casting.iota.MapIota
 import io.github.techtastic.hexmapping.api.casting.mishaps.MishapAPIUninitialized
+import io.github.techtastic.hexmapping.api.casting.mishaps.MishapUnrecognizedMarker
 import io.github.techtastic.hexmapping.casting.actions.markers.OpGetMaps
 import io.github.techtastic.hexmapping.integration.IMapIntegration
 import io.github.techtastic.hexmapping.integration.IntegrationHelper
 import io.github.techtastic.hexmapping.markers.*
 import io.github.techtastic.hexmapping.registry.HexMappingPatternRegistry
 import net.minecraft.resources.ResourceLocation
+import net.minecraft.server.level.ServerLevel
 import org.dynmap.DynmapCommonAPI
 import org.dynmap.DynmapCommonAPIListener
 import org.dynmap.markers.MarkerSet
@@ -27,11 +29,7 @@ object DynMapIntegration: DynmapCommonAPIListener(), IMapIntegration {
     }
 
     private fun getMarkerAPI() = api?.markerAPI
-        ?: throw MishapAPIUninitialized("dynmap")
-
-    override fun getMaps(): List<MapIota> {
-        return HexMappingDynmapAbstractions.getMaps().map { (key, _) -> MapIota(MapIota.MapDetails("dynmap", key)) }
-    }
+        ?: throw MishapAPIUninitialized(getModID())
 
     private fun getOrCreateMarkerSet(name: String): MarkerSet {
         val markerAPI = getMarkerAPI()
@@ -41,6 +39,11 @@ object DynMapIntegration: DynmapCommonAPIListener(), IMapIntegration {
     private fun getOrCreateMarkerIcon(icon: String) =
         getMarkerAPI().getMarkerIcon(icon)
             ?: getMarkerAPI().createMarkerIcon(icon, icon, HexMappingDynmapAbstractions.getIconStream(ResourceLocation.tryParse(icon)))
+
+    override fun getModID() = "dynmap"
+
+    override fun getMapFromLevel(level: ServerLevel) =
+        listOf(MapIota(MapIota.MapDetails(getKeyForIntegration().toString(), HexMappingDynmapAbstractions.getWorldName(level))))
 
     override fun setMarker(world: String, setName: String, marker: BaseMarker) {
         val set = getOrCreateMarkerSet(setName)
@@ -63,6 +66,8 @@ object DynMapIntegration: DynmapCommonAPIListener(), IMapIntegration {
                 )
                 circle.setLineStyle(marker.getLineWeight().toInt(), Color(marker.getLineColor()).alpha / 255.0, marker.getLineColor())
                 circle.setFillStyle(Color(marker.getLineColor()).alpha / 255.0, marker.getFillColor())
+
+                circle
             }
             is RectangleMarker -> {
                 set.findAreaMarker(marker.id)?.deleteMarker()
@@ -80,6 +85,8 @@ object DynMapIntegration: DynmapCommonAPIListener(), IMapIntegration {
                 rect.setRangeY(max(marker.firstCorner.y, marker.secondCorner.y), min(marker.firstCorner.y, marker.secondCorner.y))
                 rect.setLineStyle(marker.getLineWeight().toInt(), Color(marker.getLineColor()).alpha / 255.0, marker.getLineColor())
                 rect.setFillStyle(Color(marker.getLineColor()).alpha / 255.0, marker.getFillColor())
+
+                rect
             }
             is PolygonMarker -> {
                 set.findAreaMarker(marker.id)?.deleteMarker()
@@ -100,6 +107,8 @@ object DynMapIntegration: DynmapCommonAPIListener(), IMapIntegration {
                 )
                 area.setLineStyle(marker.getLineWeight().toInt(), Color(marker.getLineColor()).alpha / 255.0, marker.getLineColor())
                 area.setFillStyle(Color(marker.getLineColor()).alpha / 255.0, marker.getFillColor())
+
+                area
             }
             is PolylineMarker -> {
                 set.findPolyLineMarker(marker.id)?.deleteMarker()
@@ -116,6 +125,8 @@ object DynMapIntegration: DynmapCommonAPIListener(), IMapIntegration {
                 )
                 
                 line.setLineStyle(marker.getLineWeight().toInt(), Color(marker.getLineColor()).alpha / 255.0, marker.getLineColor())
+
+                line
             }
             is IconMarker -> {
                 set.findMarker(marker.id)?.deleteMarker()
@@ -132,7 +143,8 @@ object DynMapIntegration: DynmapCommonAPIListener(), IMapIntegration {
                     false
                 )
             }
-        }
+            else -> null
+        } ?: throw MishapUnrecognizedMarker(getModID())
     }
 
     override fun hasMarker(world: String, setName: String, id: String): Boolean {
@@ -156,7 +168,7 @@ object DynMapIntegration: DynmapCommonAPIListener(), IMapIntegration {
     override fun registerPatterns() {
         HexMappingPatternRegistry.register("get_maps/dynmap", ActionRegistryEntry(
             HexPattern.fromAngles("aawwdee", HexDir.SOUTH_WEST),
-            OpGetMaps(this::getMaps)
+            OpGetMaps(this::getMapFromLevel)
         ))
     }
 }

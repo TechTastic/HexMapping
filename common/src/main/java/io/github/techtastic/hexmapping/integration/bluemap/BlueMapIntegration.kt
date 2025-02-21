@@ -25,6 +25,7 @@ import io.github.techtastic.hexmapping.integration.IMapIntegration
 import io.github.techtastic.hexmapping.integration.IntegrationHelper
 import io.github.techtastic.hexmapping.markers.*
 import io.github.techtastic.hexmapping.registry.HexMappingPatternRegistry
+import net.minecraft.server.level.ServerLevel
 import kotlin.jvm.optionals.getOrNull
 import kotlin.math.max
 import kotlin.math.min
@@ -39,9 +40,11 @@ object BlueMapIntegration: IMapIntegration {
     private fun getMarkerSet(world: String, name: String) =
         getMapFromWorld(world).markerSets.getOrPut(name) { MarkerSet(name) }
 
-    override fun getMaps(): List<MapIota> {
-        return getAPI().maps.map { map -> MapIota(MapIota.MapDetails("bluemap", map.id)) }
-    }
+    override fun getModID() = "bluemap"
+
+    override fun getMapFromLevel(level: ServerLevel) =
+        getAPI().getWorld(level).orElseThrow { MishapBadMap(getModID(), level.dimension().location().toString()) }.maps.map { map ->
+            MapIota(MapIota.MapDetails(getKeyForIntegration().toString(), map.id)) }
 
     override fun setMarker(world: String, setName: String, marker: BaseMarker) {
         val set = getMarkerSet(world, setName)
@@ -129,7 +132,7 @@ object BlueMapIntegration: IMapIntegration {
             else -> null
         }
 
-        bluemapMarker?.let { set.put(marker.id, it) } ?: throw MishapUnrecognizedMarker("bluemap")
+        bluemapMarker?.let { set.put(marker.id, it) } ?: throw MishapUnrecognizedMarker(getModID())
     }
 
     override fun hasMarker(world: String, setName: String, id: String) =
@@ -142,7 +145,7 @@ object BlueMapIntegration: IMapIntegration {
     override fun registerPatterns() {
         HexMappingPatternRegistry.register("get_maps/bluemap", ActionRegistryEntry(
             HexPattern.fromAngles("aawwddad", HexDir.SOUTH_WEST),
-            OpGetMaps(this::getMaps)
+            OpGetMaps(this::getMapFromLevel)
         ))
     }
 }

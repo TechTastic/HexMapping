@@ -1,18 +1,23 @@
 {
   "name": "hexmapping.entry.markers",
   "icon": "minecraft:beacon",
-  "category": "hexcasting:basics",
+  "category": "hexcasting:casting",
   "sortnum": 99,
   "advancement": "hexcasting:root",
   "pages": [
     {
       "type": "patchouli:text",
-      "flag": "has_any_map",
+      "flag": "!has_any_map",
       "text": "hexcasting.page.markers.info"
     },
     {
       "type": "patchouli:text",
       "flag": "!has_any_map",
+      "text": "hexcasting.page.markers.info.extra"
+    },
+    {
+      "type": "patchouli:text",
+      "flag": "has_any_map",
       "text": "hexcasting.page.markers.missing"
     },
     {
