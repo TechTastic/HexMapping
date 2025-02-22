@@ -1,3 +1,3 @@
 # Changelog
 
-- Merged `zh_cn.json` PR made by ChuijkYahus
+- Changed `Marker Dist.` pattern to no longer conflict with HexCellular

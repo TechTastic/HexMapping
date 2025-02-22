@@ -29,7 +29,7 @@ public class HexMappingPatternRegistry {
             new ActionRegistryEntry(HexPattern.fromAngles("aaweeqqaed", HexDir.SOUTH_WEST), new OpCreateIconMarker()));
 
     public static ActionRegistryEntry HAS_MARKER = register("has_marker",
-            new ActionRegistryEntry(HexPattern.fromAngles("aawe", HexDir.SOUTH_WEST), new OpHasMarker()));
+            new ActionRegistryEntry(HexPattern.fromAngles("aawda", HexDir.SOUTH_WEST), new OpHasMarker()));
     public static ActionRegistryEntry SET_FILL_COLOR = register("set_fill_color",
             new ActionRegistryEntry(HexPattern.fromAngles("aawea", HexDir.SOUTH_WEST), new OpSetFillColor()));
     public static ActionRegistryEntry SET_LINE_COLOR = register("set_line_color",
