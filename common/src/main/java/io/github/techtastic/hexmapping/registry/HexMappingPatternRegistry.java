@@ -55,9 +55,7 @@ public class HexMappingPatternRegistry {
             register("get_maps/squaremap", new ActionRegistryEntry(HexPattern.fromAngles("aaeqwawqw",
                     HexDir.SOUTH_WEST), new OpGetSquaremapMaps())) : null;
 
-    public static void init() {
-        HexMappingIntegrationRegistry.INSTANCE.registerPatterns();
-    }
+    public static void init() {}
 
     public static ActionRegistryEntry register(String name, ActionRegistryEntry entry) {
         return ACTIONS.put(name, entry);

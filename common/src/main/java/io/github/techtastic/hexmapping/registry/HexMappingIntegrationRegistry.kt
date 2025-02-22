@@ -41,8 +41,4 @@ object HexMappingIntegrationRegistry {
 
     fun areAnyIntegrationsEnabled() =
         integrations.keys.any(this::isIntegrationEnabled)
-
-    fun registerPatterns() {
-        integrations.values.forEach(IMapIntegration::registerPatterns)
-    }
 }
