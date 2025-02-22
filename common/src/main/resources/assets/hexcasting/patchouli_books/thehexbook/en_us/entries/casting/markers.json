@@ -8,17 +8,17 @@
     {
       "type": "patchouli:text",
       "flag": "has_any_map",
-      "text": "hexcasting.page.markers.info"
+      "text": "hexmapping.page.markers.info"
     },
     {
       "type": "patchouli:text",
       "flag": "has_any_map",
-      "text": "hexcasting.page.markers.info.extra"
+      "text": "hexmapping.page.markers.info.extra"
     },
     {
       "type": "patchouli:text",
       "flag": "!has_any_map",
-      "text": "hexcasting.page.markers.missing"
+      "text": "hexmapping.page.markers.missing"
     },
     {
       "type": "hexcasting:pattern",
