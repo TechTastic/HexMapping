@@ -18,7 +18,7 @@
   "hexmapping.page.marker_actions.set_line_color": "若标记类型合适（圆形、矩形、折线、多边形），设置标记的描边颜色。",
   "hexcasting.action.hexmapping:set_line_weight": "标记描边之馏化，第二型",
   "hexmapping.page.marker_actions.set_line_weight": "若标记类型合适（圆形、矩形、折线、多边形），设置标记的描边线宽。",
-  "hexcasting.action.hexmapping:has_marker": "标记之提整",
+  "hexcasting.action.hexmapping:has_marker": "标记之馏化",
   "hexmapping.page.marker_actions.has_marker": "检查$(thing)地图$()中是否存在使用所给$(thing)标识$()的标记。",
 
   "hexmapping.entry.marker_spells": "标记法术",
