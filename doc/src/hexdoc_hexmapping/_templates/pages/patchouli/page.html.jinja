@@ -1,0 +1,39 @@
+{# copied from https://github.com/hexdoc-dev/hexdoc/blob/34aff08b9e6facab74be4425adbb95f71cd1fa53/src/hexdoc/_templates/pages/patchouli/page.html.jinja to allow hiding pages based on flag #}
+
+{% if page.flag != "!has_any_map" %}
+{# FIXME: hack #}
+{% if page.anchor %}
+  {# set variable to allow children to use this value too #}
+  {% set page_anchor_id = entry.id.path ~ "@" ~ page.anchor %}
+
+  {#- page content (not required because EmptyPage uses this template directly) #}
+  <div id="{{ page_anchor_id }}" class="{{ 'spoilered' if page.is_spoiler }}">
+    {% block body scoped %}{% endblock %}
+  </div>
+{% elif page.is_spoiler %}
+  <div class="spoilered">
+    {{ self.body() }}
+  </div>
+{% else %}
+  {{ self.body() }}
+{% endif %}
+<br />
+{% endif %}
+
+{%- macro redirect_title() -%}
+  {%- block redirect_title -%}
+    {{ page.anchor }}
+  {%- endblock redirect_title -%}
+{%- endmacro -%}
+
+{%- macro redirect_description() -%}
+  {%- block redirect_description %}{% endblock -%}
+{%- endmacro -%}
+
+{%- macro redirect_image() -%}
+  {%- block redirect_image %}{% endblock -%}
+{%- endmacro -%}
+
+{%- macro redirect_extra_opengraph() %}
+  {% block redirect_extra_opengraph %}{% endblock %}
+{% endmacro -%}
