@@ -18,7 +18,7 @@
   "hexmapping.page.marker_actions.set_line_color": "Sets the Line Color of a marker, if applicable (Circle, Rectangle, Polyline, and Polygon)",
   "hexcasting.action.hexmapping:set_line_weight": "Marker Line Dist. II",
   "hexmapping.page.marker_actions.set_line_weight": "Sets the Line Weight of a marker, if applicable (Circle, Rectangle, Polyline, and Polygon)",
-  "hexcasting.action.hexmapping:has_marker": "Marker Exlt.",
+  "hexcasting.action.hexmapping:has_marker": "Marker Dist.",
   "hexmapping.page.marker_actions.has_marker": "Checks if a marker exists on the $(thing)map$() under the provided $(thing)identifier$()",
 
   "hexmapping.entry.marker_spells": "Marker Spells",
@@ -29,9 +29,9 @@
   "hexmapping.page.marker_spells.remove_marker": "Removed the marker on the $(thing)map$() under the provided $(thing)identifier$()",
 
   "hexmapping.entry.markers": "Nature's Glass Eye",
-  "hexcasting.page.markers.info": "$(italic)I have made a terrifying discovery. We are being observed...$()$(br2)I first thought it was an error within my anti-scrying hexes but upon further testing, it seems something is peering into our world and using Nature itself to do so. $(br2)This cannot stand...",
-  "hexcasting.page.markers.info.extra": "I have started testing the limits of their perception.$(br2)Utilizing a $(thing)Map$(), I have found a way to alter their perception by inscribing various $(thing)Markers$() onto Nature's very own eyes.$(br2)$(italic)I fear my actions may have drawn more observers... I hope I am wrong...$(br2)$(br)    $(bold)THEY SEE ME$()$(br2)      $(italic)they see you, $(#ff0000)$(playername)",
-  "hexcasting.page.markers.missing": "Oh, huh... Seems you are missing any map mod that we have integration for...$(br2)Here are the existing integrations:$(li)$(l:https://modrinth.com/plugin/bluemap)Bluemap$(/l)$(li)$(l:https://modrinth.com/plugin/dynmap)Dynmap$(/l)$(li)$(l:https://modrinth.com/plugin/pl3xmap)Pl3xmap$(/l)$(li)$(l:https://modrinth.com/plugin/squaremap)Squaremap$(/l)",
+  "hexmapping.page.markers.info": "$(italic)I have made a terrifying discovery. We are being observed...$()$(br2)I first thought it was an error within my anti-scrying hexes but upon further testing, it seems something is peering into our world and using Nature itself to do so. $(br2)This cannot stand...",
+  "hexmapping.page.markers.info.extra": "I have started testing the limits of their perception.$(br2)Utilizing a $(thing)Map$(), I have found a way to alter their perception by inscribing various $(thing)Markers$() onto Nature's very own eyes.$(br2)$(italic)I fear my actions may have drawn more observers... I hope I am wrong...$(br2)$(br)    $(bold)THEY SEE ME$()$(br2)      $(italic)they see you, $(#ff0000)$(playername)",
+  "hexmapping.page.markers.missing": "Oh, huh... Seems you are missing any map mod that we have integration for...$(br2)Here are the existing integrations:$(li)$(l:https://modrinth.com/plugin/bluemap)Bluemap$(/l)$(li)$(l:https://modrinth.com/plugin/dynmap)Dynmap$(/l)$(li)$(l:https://modrinth.com/plugin/pl3xmap)Pl3xmap$(/l)$(li)$(l:https://modrinth.com/plugin/squaremap)Squaremap$(/l)",
   "hexcasting.action.hexmapping:get_maps/bluemap": "Bluemap Reflection",
   "hexmapping.page.markers.get_maps.bluemap": "Pushes a list of $(thing)Maps$() for your current dimension from Bluemap to the stack",
   "hexcasting.action.hexmapping:get_maps/dynmap": "Dynmap Reflection",
