@@ -132,7 +132,6 @@ publishMods {
     curseforge {
         if (System.getenv("CURSEFORGE_TOKEN") != null) {
             accessToken = System.getenv("CURSEFORGE_TOKEN")
-            accessToken = project.curseforgeApiToken
             projectId = project.curseforgeId
             minecraftVersions.add(minecraftVersion)
 
