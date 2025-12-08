@@ -130,16 +130,19 @@ publishMods {
     displayName = "HexMapping $project.version [Forge]"
 
     curseforge {
-        accessToken = project.curseforgeApiToken
-        projectId = project.curseforgeId
-        minecraftVersions.add(minecraftVersion)
+        if (System.getenv("CURSEFORGE_TOKEN") != null) {
+            accessToken = System.getenv("CURSEFORGE_TOKEN")
+            accessToken = project.curseforgeApiToken
+            projectId = project.curseforgeId
+            minecraftVersions.add(minecraftVersion)
 
-        requires("architectury-api", "kotlin-for-forge", "hexcasting", "moreiotas")
-        optional("bluemap", "dynmapforge")
+            requires("architectury-api", "kotlin-for-forge", "hexcasting", "moreiotas")
+            optional("bluemap", "dynmapforge")
+        }
     }
 
     modrinth {
-        accessToken = project.modrinthApiToken
+        accessToken = System.getenv("MODRINTH_TOKEN")
         projectId = project.modrinthId
         minecraftVersions.add(minecraftVersion)
 

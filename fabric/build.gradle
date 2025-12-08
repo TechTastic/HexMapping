@@ -138,16 +138,18 @@ publishMods {
     displayName = "HexMapping $project.version [Fabric]"
 
     curseforge {
-        accessToken = project.curseforgeApiToken
-        projectId = project.curseforgeId
-        minecraftVersions.add(minecraftVersion)
+        if (System.getenv("CURSEFORGE_TOKEN") != null) {
+            accessToken = System.getenv("CURSEFORGE_TOKEN")
+            projectId = project.curseforgeId
+            minecraftVersions.add(minecraftVersion)
 
-        requires("fabric-api", "architectury-api", "fabric-language-kotlin", "hexcasting", "moreiotas")
-        optional("bluemap", "dynmapforge")
+            requires("fabric-api", "architectury-api", "fabric-language-kotlin", "hexcasting", "moreiotas")
+            optional("bluemap", "dynmapforge")
+        }
     }
 
     modrinth {
-        accessToken = project.modrinthApiToken
+        accessToken = System.getenv("MODRINTH_TOKEN")
         projectId = project.modrinthId
         minecraftVersions.add(minecraftVersion)
 
