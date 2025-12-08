@@ -28,6 +28,7 @@ dependencies {
 
     modCompileOnly "vazkii.patchouli:Patchouli:${minecraftVersion}-${patchouliVersion}-FABRIC"
     modCompileOnly "at.petra-k.hexcasting:hexcasting-common-${minecraftVersion}:${hexcastingVersion}"
+    modCompileOnly "com.samsthenerd.inline:inline-fabric:$minecraftVersion-$inlineVersion"
 
     modCompileOnly ("ram.talia.moreiotas:moreiotas-fabric-$minecraftVersion:$more_iotas_version") { transitive = false }
     modCompileOnly "maven.modrinth:hexical:$hexical_version"

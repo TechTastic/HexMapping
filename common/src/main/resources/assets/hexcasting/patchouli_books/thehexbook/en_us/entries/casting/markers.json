@@ -7,17 +7,17 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "flag": "has_any_map",
+      "flag": "hexmapping:has_any_map",
       "text": "hexmapping.page.markers.info"
     },
     {
       "type": "patchouli:text",
-      "flag": "has_any_map",
+      "flag": "hexmapping:has_any_map",
       "text": "hexmapping.page.markers.info.extra"
     },
     {
       "type": "patchouli:text",
-      "flag": "!has_any_map",
+      "flag": "!hexmapping:has_any_map",
       "text": "hexmapping.page.markers.missing"
     },
     {

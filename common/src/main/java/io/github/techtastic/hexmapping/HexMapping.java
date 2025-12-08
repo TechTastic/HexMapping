@@ -1,10 +1,5 @@
 package io.github.techtastic.hexmapping;
 
-import com.samsthenerd.inline.api.InlineAPI;
-import com.samsthenerd.inline.api.data.SpriteInlineData;
-import com.samsthenerd.inline.api.matching.*;
-import com.samsthenerd.inline.utils.TextureSprite;
-import dev.architectury.platform.Platform;
 import io.github.techtastic.hexmapping.registry.HexMappingIntegrationRegistry;
 import io.github.techtastic.hexmapping.registry.HexMappingIotaTypeRegistry;
 import io.github.techtastic.hexmapping.registry.HexMappingPatternRegistry;
@@ -28,7 +23,7 @@ public class HexMapping {
         HexMappingIotaTypeRegistry.init();
         HexMappingPatternRegistry.init();
 
-        PatchouliAPI.get().setConfigFlag("has_map_mod",
+        PatchouliAPI.get().setConfigFlag("hexmapping:has_map_mod",
                 HexMappingIntegrationRegistry.INSTANCE.areAnyIntegrationsEnabled());
     }
 
