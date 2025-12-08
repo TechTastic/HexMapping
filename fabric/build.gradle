@@ -24,12 +24,23 @@ configurations {
 
 repositories {
     maven {
-        name "KosmX's maven"
-        url 'https://maven.kosmx.dev/'
+        name = 'Ladysnake Mods'
+        url = 'https://maven.ladysnake.org/releases'
     }
-    flatDir {
-        dir 'libs'
+    maven {
+        name = 'GeckoLib'
+        url = 'https://dl.cloudsmith.io/public/geckolib3/geckolib/maven/'
+        content {
+            includeGroupByRegex("software\\.bernie.*")
+            includeGroup("com.eliotlash.mclib")
+        }
     }
+    maven {
+        name = "Fuzs Mod Resources"
+        url = "https://raw.githubusercontent.com/Fuzss/modresources/main/maven/"
+    }
+    maven { url = "https://maven.kosmx.dev/" }
+    maven { url = "https://maven.terraformersmc.com/releases" }
 }
 
 dependencies {
@@ -44,36 +55,22 @@ dependencies {
         exclude group: "net.fabricmc", module: "fabric-loader"
     }
 
-    // Hex Casting stuff
-    modImplementation("at.petra-k.hexcasting:hexcasting-fabric-${minecraftVersion}:${hexcastingVersion}") {
-        // If not excluded here, calls a nonexistent method and crashes the dev client
-        exclude module: "phosphor"
+    modImplementation "vazkii.patchouli:Patchouli:${minecraftVersion}-${patchouliVersion}-FABRIC"
+    modImplementation "at.petra-k.hexcasting:hexcasting-fabric-${minecraftVersion}:${hexcastingVersion}"
+    modRuntimeOnly "at.petra-k.paucal:paucal-fabric-${minecraftVersion}:${paucalVersion}"
+    modRuntimeOnly "com.samsthenerd.inline:inline-fabric:$minecraftVersion-$inlineVersion"
+    modRuntimeOnly "dev.onyxstudios.cardinal-components-api:cardinal-components-api:${cardinalComponentsVersion}"
+    modRuntimeOnly "io.github.tropheusj:serialization-hooks:0.4.99999"
+    modImplementation("software.bernie.geckolib:geckolib-fabric-${minecraftVersion}:${geckolib_version}")
+    modImplementation("me.shedaniel.cloth:cloth-config-fabric:${clothConfigVersion}") {
+        exclude(group: "net.fabricmc.fabric-api")
     }
-
-    modImplementation "at.petra-k.paucal:paucal-fabric-$minecraftVersion:$paucalVersion"
-    modImplementation "vazkii.patchouli:Patchouli:$minecraftVersion-$patchouliVersion-FABRIC-SNAPSHOT"
-
-    modImplementation "com.samsthenerd.inline:inline-fabric:$minecraftVersion-$inlineVersion"
-
-    modImplementation "dev.onyxstudios.cardinal-components-api:cardinal-components-api:${cardinalComponentsVersion}"
-
-    //modImplementation "com.jamieswhiteshirt:reach-entity-attributes:${entityReachVersion}"
-    //include "com.jamieswhiteshirt:reach-entity-attributes:${entityReachVersion}"
-
-    //modImplementation "io.github.tropheusj:serialization-hooks:${serializationHooksVersion}"
-    //include "io.github.tropheusj:serialization-hooks:${serializationHooksVersion}"
-
-    modImplementation "dev.emi:trinkets:${trinketsVersion}"
-
-    modImplementation "${modID}:serialization-hooks:$serializationHooksVersion"
-    include "${modID}:serialization-hooks:$serializationHooksVersion"
 
     common(project(path: ":common", configuration: "namedElements")) { transitive false }
     shadowCommon(project(path: ":common", configuration: "transformProductionFabric")) { transitive false }
 
-    modImplementation "${modID}:moreiotas-fabric:1.20.1-0.1.0-5"
-
-    modImplementation "${modID}:hexical:1.5.0"
+    modImplementation ("ram.talia.moreiotas:moreiotas-fabric-$minecraftVersion:$more_iotas_version") { transitive = false }
+    modImplementation "maven.modrinth:hexical:$hexical_version"
     modLocalRuntime "dev.kosmx.player-anim:player-animation-lib-fabric:1.0.2-rc1+1.20"
 
     modCompileOnly "maven.modrinth:dynmap:IIQSYMHC"

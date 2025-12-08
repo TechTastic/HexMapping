@@ -26,14 +26,11 @@ dependencies {
     implementation 'org.jetbrains.kotlin:kotlin-stdlib-jdk8'
     implementation group: 'com.google.code.findbugs', name: 'jsr305', version: '3.0.2' // for @Nonnull
 
-    modCompileOnly("at.petra-k.hexcasting:hexcasting-common-${project.minecraftVersion}:${project.hexcastingVersion}") {
-        transitive = false
-    }
-    compileOnly "at.petra-k.paucal:paucal-common-$minecraftVersion:$paucalVersion"
-    compileOnly "vazkii.patchouli:Patchouli-xplat:$minecraftVersion-$patchouliVersion-SNAPSHOT"
-    compileOnly "com.samsthenerd.inline:inline-forge:$minecraftVersion-$inlineVersion"
+    modCompileOnly "vazkii.patchouli:Patchouli:${minecraftVersion}-${patchouliVersion}-FABRIC"
+    modCompileOnly "at.petra-k.hexcasting:hexcasting-common-${minecraftVersion}:${hexcastingVersion}"
 
-    modCompileOnly "${modID}:moreiotas-common:1.20.1-0.1.0-5"
+    modCompileOnly ("ram.talia.moreiotas:moreiotas-fabric-$minecraftVersion:$more_iotas_version") { transitive = false }
+    modCompileOnly "maven.modrinth:hexical:$hexical_version"
 
     modCompileOnly "maven.modrinth:pl3xmap:${rootProject.pl3xmap_version}"
     modCompileOnly "us.dynmap:DynmapCoreAPI:${rootProject.dynmap_version}"
