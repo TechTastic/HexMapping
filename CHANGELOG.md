@@ -1,3 +1,3 @@
 # Changelog
 
-- Downgraded Fabric Loader ot `0.16.9` for Quilt support
+- Refactored `has_map_mod` Patchouli flag to `hexmapping:has_map_mod`
